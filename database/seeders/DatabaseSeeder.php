@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $user = User::factory()->create([
             'username' => 'Lay hak',
+            'name' => 'Lay hak',
         ]);
 
         Post::factory(5)->create([

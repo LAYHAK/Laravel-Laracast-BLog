@@ -5,6 +5,11 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
+// to see the query that is being executed
+//    DB::listen(function ($query) {
+//        logger($query->sql, $query->bindings);
+//    });
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,14 +21,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
-    //    DB::listen(function ($query) {
-    //        logger($query->sql, $query->bindings);
-    //    });
-
     return view('posts', [
         'posts' => Post::latest('published_at')->get(),
+        'categories' => Category::all(),
     ]);
-});
+})->name('home');
 
 Route::get('/posts/{post:slug}', function (Post $post) {//Post::where('slug',$post)->firstOrFail()
     return view('post', [
@@ -34,11 +36,14 @@ Route::get('/posts/{post:slug}', function (Post $post) {//Post::where('slug',$po
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('posts', [
         'posts' => $category->posts,
+        'currentCategory' => $category, // 'currentCategory' => $category->name, // 'currentCategory' => $categor
+        'categories' => Category::all(),
     ]);
 });
 Route::get('/author/{author:username}', function (User $author) {
     return view('posts', [
         'posts' => $author->posts,
+        'categories' => Category::all(),
     ]);
 });
 // Route::get('/posts/{post}', function ($slug) {
