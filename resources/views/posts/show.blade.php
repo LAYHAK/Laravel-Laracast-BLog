@@ -25,10 +25,16 @@
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
-                        <img src="/images/lary-avatar.svg" alt="Lary avatar">
+
+                        <a href="{{route('home')}}?author={{$post->author->username}}">
+                            <img src="/images/lary-avatar.svg" alt="Lary avatar">
+                        </a>
                         <div class="ml-3 text-left">
-                            <h5 class="font-bold">{{$post->author->username}}</h5>
+                            <h5 class="font-bold">
+                                <a href="{{route('home')}}?author={{$post->author->username}}">{{$post->author->name}}</a>
+                            </h5>
                         </div>
+
                     </div>
                 </div>
 

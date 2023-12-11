@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @method filter()
- */
 class Post extends Model
 {
     use HasFactory;
@@ -19,7 +16,7 @@ class Post extends Model
 
     public function scopeFilter($query, array $filters): void
     {
-        //todo query builder create by laravel automatic when the fuction is call
+        // query builder create by laravel automatic when the fuction is call
         //        if ($filters['search'] ?? false) {
         //            $query
         //                ->where('title', 'like', '%'.request('search').'%')
@@ -43,6 +40,19 @@ class Post extends Model
             ->orWhereHas('author', function ($query) {
                 $query->where('username', 'like', '%'.request('search').'%');
             })
+        );
+        $query->when($filters['category'] ?? false, fn ($query, $category) => $query
+            ->whereHas('category', fn ($query) => $query->where('slug', $category))
+            //? this is the same as above
+            //            ->whereExists(fn ($query) => $query
+            //                ->from('categories')
+            //                ->whereColumn('categories.id', 'posts.category_id')
+            //                ->where('categories.slug', $category)
+            //            )
+
+        );
+        $query->when($filters['author'] ?? false, fn ($query, $author) => $query
+            ->whereHas('author', fn ($query) => $query->where('username', $author))
         );
     }
 

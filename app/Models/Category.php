@@ -10,7 +10,7 @@ class Category extends Model
 {
     public $timestamps = false;
 
-    public static function factory()
+    public static function factory(): CategoryFactory
     {
         return new CategoryFactory();
     }
