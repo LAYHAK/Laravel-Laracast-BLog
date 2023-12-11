@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> {{$title ?? ""}} </title>
     @vite('resources/css/app.css')
+    <link rel="icon" href="/images/lary-avatar.svg">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
 </head>
 <body style="font-family: Open Sans, sans-serif">
-
 
 <section class="px-6 py-8">
     <nav class="md:flex md:justify-between md:items-center">
@@ -65,6 +65,6 @@
 
 {{--{{$content}}--}}
 {{-- if we define our oun name we need to use <x-slot:name></x-slot:name> --}}
- {{-- this is default name for slot --}}
+{{-- this is default name for slot --}}
 </body>
 </html>

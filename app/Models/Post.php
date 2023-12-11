@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @method filter()
+ */
 class Post extends Model
 {
     use HasFactory;
@@ -13,6 +16,35 @@ class Post extends Model
     protected $fillable = ['title', 'excerpt', 'body', 'slug', 'published_at', 'category_id'];
 
     protected $with = ['category', 'author'];
+
+    public function scopeFilter($query, array $filters): void
+    {
+        //todo query builder create by laravel automatic when the fuction is call
+        //        if ($filters['search'] ?? false) {
+        //            $query
+        //                ->where('title', 'like', '%'.request('search').'%')
+        //                ->orWhere('body', 'like', '%'.request('search').'%')
+        //                ->orWhere('excerpt', 'like', '%'.request('search').'%')
+        //                ->orWhereHas('category', function ($query) {
+        //                    $query->where('name', 'like', '%'.request('search').'%');
+        //                })
+        //                ->orWhereHas('author', function ($query) {
+        //                    $query->where('username', 'like', '%'.request('search').'%');
+        //                });
+        //        }
+        //CLeaner way
+        $query->when($filters['search'] ?? false, fn ($query, $search) => $query
+            ->where('title', 'like', '%'.$search.'%')
+            ->orWhere('body', 'like', '%'.$search.'%')
+            ->orWhere('excerpt', 'like', '%'.$search.'%')
+            ->orWhereHas('category', function ($query) {
+                $query->where('name', 'like', '%'.request('search').'%');
+            })
+            ->orWhereHas('author', function ($query) {
+                $query->where('username', 'like', '%'.request('search').'%');
+            })
+        );
+    }
 
     public function getRouteKeyName(): string
     {
