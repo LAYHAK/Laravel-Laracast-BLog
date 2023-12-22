@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
         //        ],
         //        );
         $category = Category::factory()->create([
-            'name' => 'Family',
-            'slug' => 'Family',
+            'name' => 'School',
+            'slug' => 'School',
         ]);
 
-        Post::factory(5)->create([
+        Post::factory(15)->create([
             'user_id' => 1,
             'category_id' => $category->id,
         ],

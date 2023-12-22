@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
-// to see the query that is being executed
-//    DB::listen(function ($query) {
+//? to see the query that is being executed
+//*   DB::listen(function ($query) {
 //        logger($query->sql, $query->bindings);
 //    });
 
@@ -21,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+
+Route::get('/register', [RegisterController::class, 'create']);
+Route::post('/register', [RegisterController::class, 'store']);
 
 //Route::get('/categories/{category:slug}', function (Category $category) {
 //    return view('posts', [

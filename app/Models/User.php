@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -42,6 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    //? the same as put key password in $casts with hashed value
+    //    public function setPasswordAttribute(string $password): void
+    //    {
+    //        $this->attributes['password'] = bcrypt($password);
+    //    }
 
     public function posts(): HasMany
     {

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @method filter(mixed $request)
+ */
 class Post extends Model
 {
     use HasFactory;
@@ -30,16 +33,12 @@ class Post extends Model
         //                });
         //        }
         //CLeaner way
-        $query->when($filters['search'] ?? false, fn ($query, $search) => $query
+        $query->when($filters['search'] ?? false, fn ($query, $search) => $query->where(fn ($query) => $query
             ->where('title', 'like', '%'.$search.'%')
-            ->orWhere('body', 'like', '%'.$search.'%')
             ->orWhere('excerpt', 'like', '%'.$search.'%')
-            ->orWhereHas('category', function ($query) {
-                $query->where('name', 'like', '%'.request('search').'%');
-            })
             ->orWhereHas('author', function ($query) {
                 $query->where('username', 'like', '%'.request('search').'%');
-            })
+            }))
         );
         $query->when($filters['category'] ?? false, fn ($query, $category) => $query
             ->whereHas('category', fn ($query) => $query->where('slug', $category))

@@ -8,10 +8,13 @@ class PostController extends Controller
 {
     public function index()
     {
-        //? other way is to use scope query from our Post Model
 
+        //? other way is to use scope query from our Post Model
         return view('posts.index', [
-            'posts' => Post::latest('published_at')->filter(request(['search', 'category', 'author']))->get(),
+            'posts' => Post::latest('published_at')
+                ->filter(request(
+                    ['search', 'category', 'author']
+                ))->Paginate(6)->withQueryString(),
         ]);
     }
 
@@ -21,7 +24,8 @@ class PostController extends Controller
             'post' => $post,
         ]);
     }
-}// one way to make search more clean is to Extract method
+}
+// one way to make search more clean is to Extract method
 // public function getPosts()
 // {
 // $posts = Post::latest('published_at');

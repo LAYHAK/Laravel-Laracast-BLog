@@ -31,6 +31,7 @@
         </div>
     </nav>
 
+
     {{$slot}}
 
     <footer class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
@@ -61,10 +62,13 @@
         </div>
     </footer>
 </section>
+
 {{--    @yield('content')--}}
 
 {{--{{$content}}--}}
 {{-- if we define our oun name we need to use <x-slot:name></x-slot:name> --}}
 {{-- this is default name for slot --}}
+<x-flash/>
+
 </body>
 </html>
