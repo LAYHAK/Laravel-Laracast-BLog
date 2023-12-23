@@ -5,7 +5,7 @@
             <x-post-grid :posts="$posts"/>
             {{-- make pagination more cooler--}}
             {{--            {{$posts->links()}}--}}
-            {{$posts->links()}}
+            {{$posts->links( 'pagination::tailwind')}}
         @else
             <p class="text-center">No Post Yet, Please Check back later!</p>
         @endif
