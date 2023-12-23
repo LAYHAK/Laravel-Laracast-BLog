@@ -4,8 +4,8 @@
         <main class="max-w-lg mx-auto">
             <div
                 class="flex flex-col max-w-md border border-gray-600 p-6 rounded-xl sm:p-10 dark:bg-gray-100 dark:text-gray-900 mt-10">
-                <div class="mb-8 text-center">
-                    <h1 class="my-3 text-4xl font-bold">Sign up</h1>
+                <div class=" text-center">
+                    <h1 class="my-1 text-4xl font-bold">Sign up</h1>
                 </div>
                 <form method="post" action="/register" class="space-y-12">
                     @csrf
@@ -60,8 +60,8 @@
                                     class="w-full px-8 py-3 font-semibold rounded-md dark:bg-blue-500 dark:text-gray-100">
                                 Sign up
                             </button>
-                            <p class="px-6 text-sm text-center dark:text-gray-400 mt-5">Don't have an account yet?
-                                <a href="#" class="hover:underline dark:text-blue-500">Sign
+                            <p class="px-6 text-sm text-center dark:text-gray-400 mt-5">Already have an account?
+                                <a href="/login" class="hover:underline dark:text-blue-500">Sign
                                     in</a>.
                             </p>
                         </div>
