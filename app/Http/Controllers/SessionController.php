@@ -26,7 +26,7 @@ class SessionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
         $attributes = request()->validate([
             'email' => ['required', 'email', 'max:255'],
@@ -35,7 +35,7 @@ class SessionController extends Controller
 
         if (! auth()->attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email' => 'Your provided credentials could not be verified.',
+                'email' => 'Your provided invalid email or password.',
             ]);
         }
 
@@ -78,6 +78,6 @@ class SessionController extends Controller
     {
         auth()->logout();
 
-        return redirect('/')->with('success', 'Goodbye!');
+        return redirect('/')->with('success', 'Goodbye See you next time');
     }
 }

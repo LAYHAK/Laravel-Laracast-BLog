@@ -14,6 +14,7 @@
 </head>
 <body style="font-family: Open Sans, sans-serif">
 
+<x-flash/>
 <section class="px-6 py-8">
     <nav class="md:flex md:justify-between md:items-center">
         <div>
@@ -23,17 +24,20 @@
         </div>
 
         <div class="mt-8 md:mt-0">
-            @guest()
-                <a href="/register" class="text-xs font-bold uppercase">Register</a>
-                <a href="/login" class="text-xs font-bold uppercase ml-3">Login</a>
-            @else
-                <span class="text-xs font-bold uppercase">Welcome, {{auth()->user()->name}}</span>
+            {{--            @guest()--}}
+
+            {{--            @else--}}
+
+            {{--            @endguest--}}
+            @auth()
+                <p class="text-xs inline-block font-bold uppercase">Welcome, {{auth()->user()->username}}</p>
                 <form method="POST" action="/logout" class="inline-block">
                     @csrf
                     <button type="submit" class="text-xs  text-red-500 font-bold capitalize ml-3">Logout</button>
                 </form>
-            @endguest
-            @auth()
+            @else
+                <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                <a href="/login" class="text-xs font-bold uppercase ml-3">Login</a>
             @endauth
             <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                 Subscribe for Updates
@@ -78,7 +82,6 @@
 {{--{{$content}}--}}
 {{-- if we define our oun name we need to use <x-slot:name></x-slot:name> --}}
 {{-- this is default name for slot --}}
-<x-flash/>
 
 </body>
 </html>
