@@ -26,10 +26,10 @@ class SessionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store()
+    public function store(Request $request)
     {
-        $attributes = request()->validate([
-            'email' => ['required', 'email', 'max:255'],
+        $attributes = $request->validate([
+            'email' => ['required', 'email', 'max:255', 'regex:/^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|hotmail|yahoo)\.com$/'],
             'password' => ['required', 'min:7', 'max:255'],
         ]);
 
@@ -41,8 +41,9 @@ class SessionController extends Controller
 
         session()->regenerate();
 
-        return redirect('/')->with('success', 'Welcome Back!');
-        //        return back()
+        //        session()->flash('success', 'Welcome Back!');
+        return to_route('home')->with('success', 'Welcome Back!');
+
         //            ->withInput()
         //            ->withErrors(['email' => 'Your provided credentials could not be verified.']);
     }
