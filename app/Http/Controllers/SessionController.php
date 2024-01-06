@@ -29,7 +29,7 @@ class SessionController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'email' => ['required', 'email', 'max:255', 'regex:/^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|hotmail|yahoo)\.com$/'],
+            'email' => ['required', 'email', 'max:255', 'regex:/^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|hotmail|yahoo|laracast)\.com$/'],
             'password' => ['required', 'min:7', 'max:255'],
         ]);
 

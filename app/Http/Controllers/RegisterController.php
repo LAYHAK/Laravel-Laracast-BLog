@@ -36,7 +36,7 @@ class RegisterController extends Controller
                 'required',
                 'email', 'max:255',
                 'unique:users,email',
-                'regex:/^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|hotmail|yahoo)\.com$/',
+                'regex:/^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|hotmail|yahoo|laracast)\.com$/',
             ],
             'password' => [
                 'required',
