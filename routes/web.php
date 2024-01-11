@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::post('/newsletter', NewslettersController::class);
+Route::post('newsletter', NewslettersController::class);
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 

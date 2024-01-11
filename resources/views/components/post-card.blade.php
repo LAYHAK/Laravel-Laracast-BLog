@@ -46,7 +46,7 @@
 
                 <div>
                     <a href="/posts/{{$post->slug}}"
-                       class="btn  btn-sm rounded-full px-6 text-xs"
+                       class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"
                     >Read More</a>
                 </div>
             </footer>
