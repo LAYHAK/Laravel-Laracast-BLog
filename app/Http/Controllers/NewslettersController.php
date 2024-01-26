@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Newsletter;
+use Illuminate\Validation\ValidationException;
 
 class NewslettersController extends Controller
 {
@@ -10,14 +11,19 @@ class NewslettersController extends Controller
     public function __invoke(Newsletter $newsletter)
     {
         request()->validate([
-            'email' => ['required', 'email', 'max:255', 'regex:/^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|hotmail|yahoo|laracast)\.com$/'],
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+                'regex:/^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|hotmail|yahoo|laracast|test)\.com$/',
+            ],
         ]);
 
         try {
             //$newsletter = new Newsletter();
             $newsletter->subscribe(request('email'));
         } catch (\Exception $e) {
-            throw \Illuminate\Validation\ValidationException::withMessages([
+            throw ValidationException::withMessages([
                 'email' => 'This email could not be added to our newsletter list.',
             ]);
         }

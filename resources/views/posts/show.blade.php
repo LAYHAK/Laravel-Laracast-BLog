@@ -17,8 +17,10 @@
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                    <img src="/images/illustration-1.png" alt="" class="rounded-xl">
-
+                    <img
+                        src="{{asset(($post->thumbnail != '') ? 'storage/'.$post->thumbnail:'images/illustration-1.png')}}"
+                        alt=""
+                        class="rounded-xl">
                     <p class="mt-4 block text-gray-400 text-xs">
                         Published
                         <time>{{$post->created_at->diffForHumans()}}</time>
@@ -34,7 +36,7 @@
                                 <a href="{{route('home')}}?author={{$post->author->username}}">{{$post->author->name}}</a>
                             </h5>
                         </div>
-
+                        {{--                        <x-button label="Edit Post" :url="route('p.edit',$post->slug)"/>--}}
                     </div>
                 </div>
 

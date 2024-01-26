@@ -24,6 +24,12 @@ class PostController extends Controller
             'post' => $post,
         ]);
     }
+
+    //show use for show data
+    //create use for create data
+    //store use for store data to database
+    //edit use for edit data
+    //update use for update data
 }
 // one way to make search more clean is to Extract method
 // public function getPosts()

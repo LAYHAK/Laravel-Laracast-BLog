@@ -43,6 +43,9 @@ class RegisterController extends Controller
                 'min:7',
                 'max:255',
             ],
+            'confirmPassword' => [
+                'same:password',
+            ],
         ]));
 
         //        session()->flash('success', 'Your account has been created.');

@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         ],
         );
         $category = Category::factory()->create([
-            'name' => 'Personal',
-            'slug' => 'personal',
+            'name' => 'Work',
+            'slug' => 'Work',
         ],
         );
 

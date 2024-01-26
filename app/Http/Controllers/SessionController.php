@@ -41,7 +41,7 @@ class SessionController extends Controller
 
         session()->regenerate();
 
-        //        session()->flash('success', 'Welcome Back!');
+        //session()->flash('success', 'Welcome Back!');
         return to_route('home')->with('success', 'Welcome Back!');
 
         //            ->withInput()
